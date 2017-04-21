@@ -39,11 +39,12 @@ public class AlunoWeb {
 
 	@GET
 	@Path("{indice}")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces(MediaType.APPLICATION_XML)
 	public Response getAlunoByIndice(@PathParam("indice") int indice) {
 
-		return Response.ok(alunos.get(indice)).header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON).build();
-
+		return Response.ok(alunos.get(indice)).header(HttpHeaders.CONTENT_TYPE,
+				"json".equals(format) ? MediaType.APPLICATION_JSON : MediaType.APPLICATION_XML).build();
+		
 	}
 
 	@POST

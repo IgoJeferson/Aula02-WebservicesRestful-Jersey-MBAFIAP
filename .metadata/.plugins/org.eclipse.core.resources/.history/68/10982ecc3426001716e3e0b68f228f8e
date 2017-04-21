@@ -11,7 +11,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -32,18 +31,16 @@ public class AlunoWeb {
 	}
 
 	@GET
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces(MediaType.APPLICATION_XML)
 	public static List<Aluno> getAlunos() {
 		return alunos;
 	}
 
 	@GET
 	@Path("{indice}")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Response getAlunoByIndice(@PathParam("indice") int indice) {
-
-		return Response.ok(alunos.get(indice)).header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON).build();
-
+	@Produces(MediaType.APPLICATION_XML)
+	public Aluno getAlunoByIndice(@PathParam("indice") int indice) {
+		return alunos.get(indice);
 	}
 
 	@POST
@@ -60,7 +57,7 @@ public class AlunoWeb {
 	@Consumes(MediaType.APPLICATION_XML)
 	@Produces(MediaType.APPLICATION_XML)
 	public Response atualizar(Aluno a, @PathParam("indice") int indice) {
-		System.out.println("Atualizando indice : " + indice);
+		System.out.println("Atualizando indice : "+ indice);
 		alunos.set(indice, a);
 		Retorno retorno = new Retorno("Aluno atualizado! ");
 		return Response.accepted().entity(retorno).build();
@@ -70,9 +67,9 @@ public class AlunoWeb {
 	@Path("{ind}")
 	@Produces(MediaType.APPLICATION_XML)
 	public Retorno excluir(@PathParam("ind") int indice) {
-		System.out.println("Removendo indice : " + indice);
+		System.out.println("Removendo indice : "+ indice);
 		alunos.remove(indice);
 		return new Retorno("Aluno excluído");
-		// return Response.status(200).entity(retorno).build();
+//		return Response.status(200).entity(retorno).build();
 	}
 }
