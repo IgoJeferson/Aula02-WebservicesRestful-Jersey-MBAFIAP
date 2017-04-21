@@ -1,0 +1,8 @@
+package br.com.fiap.client;
+
+public class Snippet {
+	public static void main(String[] args) {
+		XmlPutTest
+	}
+}
+

@@ -1,0 +1,22 @@
+package br.com.fiap.rs.exemplo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ALunoWeb {
+
+	private static List<Aluno> alunos;
+	
+	static {
+		Aluno aluno1 = new Aluno("Igo Jeferson","28SCJ", 8.9);
+		Aluno aluno2 = new Aluno("Zezim","28SCJ", 9.5);
+		Aluno aluno3 = new Aluno("Zica do Baile","28SCJ", 9.7);
+		
+		alunos = new ArrayList<>({aluno1,aluno2,aluno3});
+		
+	}
+
+	public static List<Aluno> getAlunos() {
+		return alunos;
+	}
+}

@@ -1,0 +1,8 @@
+package br.com.fiap.rs.exemplo;
+
+public class OlaWeb {
+
+	public String ola() {
+		return "Olá Mundo!";
+	}
+}

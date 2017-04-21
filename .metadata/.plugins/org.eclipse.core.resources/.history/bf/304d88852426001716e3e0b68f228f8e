@@ -1,0 +1,55 @@
+package br.com.fiap.rs.exemplo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+@SuppressWarnings("serial")
+@Path("/alunos")
+public class ALunoWeb {
+
+	private static List<Aluno> alunos;
+
+	static {
+		Aluno aluno1 = new Aluno("Igo Jeferson", "28SCJ", 8.9);
+		Aluno aluno2 = new Aluno("Zezim", "28SCJ", 9.5);
+		Aluno aluno3 = new Aluno("Zica do Baile", "28SCJ", 9.7);
+
+		alunos = new ArrayList<Aluno>() {
+			{
+				add(aluno1);
+				add(aluno2);
+				add(aluno3);
+			}
+		};
+
+	}
+
+	@GET
+	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+	public static List<Aluno> getAlunos() {
+		return alunos;
+	}
+
+	@GET
+	@Path("{indice}")
+	@Produces(MediaType.APPLICATION_XML)
+	public Aluno getAlunoByIndice(@PathParam("indice") int indice) {
+		return alunos.get(indice);
+	}
+
+	@POST
+	@Consumes(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_XML)
+	public Retorno novo(Aluno a) {
+		alunos.add(a);
+		return new Retorno("Aluno incluído com sucesso! ");
+	}
+}

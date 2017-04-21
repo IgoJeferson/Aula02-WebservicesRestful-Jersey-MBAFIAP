@@ -1,0 +1,9 @@
+package br.com.fiap.rs.exemplo;
+
+import java.util.List;
+
+public class ALunoWeb {
+
+	private static List<Aluno> alunos;
+
+}

@@ -1,0 +1,11 @@
+package br.com.fiap.client;
+
+import javax.ws.rs.client.ClientBuilder;
+
+public class ClientTest {
+
+	public static void main(String[] args) {
+		
+		ClientBuilder client = ClientBuilder.newBuilder();
+	}
+}
